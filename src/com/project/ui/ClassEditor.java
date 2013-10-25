@@ -48,6 +48,8 @@ public class ClassEditor {
 	private JButton btnAddAttribute;
 	private JLabel lblAttributes;
 	private JButton btnRefresh;
+	
+	private ClassEditor _classEditor;
 	/**
 	 * Launch the application.
 	 */
@@ -66,6 +68,7 @@ public class ClassEditor {
 	 */
 	public ClassEditor() {
 		templateClass = new TemplateClass();
+		_classEditor = this;
 		initLayout();
 		intiButtonAction();
 	}
@@ -122,24 +125,28 @@ public class ClassEditor {
 		btnAddAttribute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("add attribute");
-				AttributeEditor attributeEditor = new AttributeEditor(templateClass);
+				AttributeEditor attributeEditor = new AttributeEditor(templateClass, _classEditor);
 				
 			}
 		});
 		
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("refresh attribute list");
-				String attributeNames = "";
-				for (TemplateAttribute templateAttribute : templateClass.getAttributes()){
-					attributeNames += templateAttribute.getName() + ", ";
-				}
-				lblAttributes.setText(attributeNames);
+				refreshAttributes();
 			}
 		});
 
 	}
 
+	public void refreshAttributes(){
+		System.out.println("refresh attribute list");
+		String attributeNames = "";
+		for (TemplateAttribute templateAttribute : templateClass.getAttributes()){
+			attributeNames += templateAttribute.getName() + ", ";
+		}
+		lblAttributes.setText(attributeNames);
+	}
+	
 	private void initLayout() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 950, 464);

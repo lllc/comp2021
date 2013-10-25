@@ -28,6 +28,7 @@ public class AttributeEditor{
 	private JTextField textFieldType;
 	private JTextField textFieldLength;
 	private JButton btnAdd;
+	private ClassEditor _classEditor;
 	
 	public TemplateClass getTemplateClass() {
 		return templateClass;
@@ -53,9 +54,10 @@ public class AttributeEditor{
 		initButtonAction();
 	}
 	
-	public AttributeEditor(TemplateClass templateClass) {
+	public AttributeEditor(TemplateClass templateClass, ClassEditor classEditor) {
 		System.out.println("template class" + templateClass);
 		templateAttribute = new TemplateAttribute();
+		_classEditor = classEditor;
 		this.templateClass = templateClass;
 		initLayout();
 		initButtonAction();
@@ -81,10 +83,12 @@ public class AttributeEditor{
 						attributes.add(templateAttribute);
 						templateClass.setAttributes(attributes);	
 					}
+					
 					System.out.println("before dispose");
 					frame.dispose();
 					System.out.println("after dispose");
-
+					_classEditor.refreshAttributes();
+					
 				}
 			}
 		});
