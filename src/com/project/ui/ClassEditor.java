@@ -57,7 +57,7 @@ public class ClassEditor {
 		try {
 			ClassEditor classEditor = new ClassEditor();
 			classEditor.frame.setVisible(true);
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,26 +1,27 @@
 package com.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TemplateClass {
+public class TemplateClass implements Serializable {
 	
-	public static final class modifierForPublic {
+	public static final class ModifierForPublic {
 
 		public static final int PUBLIC = 0;
 
 		public static final int DEFAULT = 1;
-		
+
 		public static final int PRIVATE = 2;
-		
+
 		public static final int PROTECTED = 3;
 
 		public static final List<Integer> list = Arrays.asList(new Integer[] {
-				PUBLIC, DEFAULT, PRIVATE, PROTECTED});
+				PUBLIC, DEFAULT, PRIVATE, PROTECTED });
 	}
 
-	public static final class modifierForAbstract {
+	public static final class ModifierForAbstract {
 
 		public static final int ABSTRACT = 0;
 
