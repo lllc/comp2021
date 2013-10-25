@@ -3,6 +3,7 @@ package com.project.util;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.project.layout.Form;
 import com.project.layout.Window;
+import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
 
 public class ClassCreator {
@@ -16,7 +17,9 @@ public class ClassCreator {
 			temp += "public class " + templateClass.getClassName() + " { ";
 			temp += "\n";
 			temp += "\n";
-
+			for(TemplateAttribute templateAttribute : templateClass.getAttributes()){
+				temp += "\tprivate " + templateAttribute.getType() + " "	+ templateAttribute.getName() + ";\n";
+			}
 			temp += "}";
 		}
 		return temp;

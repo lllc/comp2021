@@ -17,13 +17,14 @@ import java.awt.Panel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
 import com.project.util.ClassCreator;
 import com.project.util.FileCreator;
 import java.awt.Color;
 import java.io.File;
 
-public class window {
+public class ClassEditor {
 
 	private JFrame frame;
 	private JTextField textField_1;
@@ -44,13 +45,16 @@ public class window {
 	private JLabel lblError;
 
 	private TemplateClass templateClass;
+	private JButton btnAddAttribute;
+	private JLabel lblAttributes;
+	private JButton btnRefresh;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			window window = new window();
-			window.frame.setVisible(true);
+			ClassEditor classEditor = new ClassEditor();
+			classEditor.frame.setVisible(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,9 +64,9 @@ public class window {
 	/**
 	 * Create the application.
 	 */
-	public window() {
+	public ClassEditor() {
 		templateClass = new TemplateClass();
-		initialize();
+		initLayout();
 		intiButtonAction();
 	}
 
@@ -114,13 +118,32 @@ public class window {
 				}
 			}
 		});
+		
+		btnAddAttribute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("add attribute");
+				AttributeEditor attributeEditor = new AttributeEditor(templateClass);
+				
+			}
+		});
+		
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("refresh attribute list");
+				String attributeNames = "";
+				for (TemplateAttribute templateAttribute : templateClass.getAttributes()){
+					attributeNames += templateAttribute.getName() + ", ";
+				}
+				lblAttributes.setText(attributeNames);
+			}
+		});
 
 	}
 
-	private void initialize() {
+	private void initLayout() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 950, 464);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		FlowLayout flowLayout_2 = new FlowLayout(FlowLayout.CENTER, 0, 0);
 		flowLayout_2.setAlignOnBaseline(true);
 		frame.getContentPane().setLayout(flowLayout_2);
@@ -167,6 +190,16 @@ public class window {
 
 		inputTextPanel3 = new JPanel();
 		formPanel.add(inputTextPanel3);
+		
+		btnRefresh = new JButton("refresh");
+
+		inputTextPanel3.add(btnRefresh);
+		
+		btnAddAttribute = new JButton("Add Attribute");
+		inputTextPanel3.add(btnAddAttribute);
+		
+		lblAttributes = new JLabel("Attributes: ");
+		inputTextPanel3.add(lblAttributes);
 
 		panel_btn = new JPanel();
 		formPanel.add(panel_btn);
