@@ -82,6 +82,7 @@ public class ClassEditor {
 		initLayout();
 		intiButtonAction();
 		this.frame.setVisible(true);
+		
 	}
 	
 	
@@ -131,6 +132,11 @@ public class ClassEditor {
 					templateClass.setPackageName(textField_2.getText());
 					String classTemplate = ClassCreator.createTemplate(templateClass);
 					textArea.setText(classTemplate);
+					
+					JButton newClass = new JButton();
+					newClass.setText(templateClass.getClassName());
+					System.out.println("new class: " + templateClass.getClassName());
+					_startpage.addClassToPanel(newClass);
 				}
 			}
 		});
