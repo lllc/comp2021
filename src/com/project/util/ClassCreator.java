@@ -1,6 +1,5 @@
 package com.project.util;
 
-import com.ibm.icu.impl.StringUCharacterIterator;
 import com.project.layout.Form;
 import com.project.layout.Window;
 import com.project.model.TemplateAttribute;

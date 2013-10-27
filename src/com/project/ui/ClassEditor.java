@@ -50,6 +50,7 @@ public class ClassEditor {
 	private JButton btnRefresh;
 	
 	private ClassEditor _classEditor;
+	private Startpage _startpage;
 	/**
 	 * Launch the application.
 	 */
@@ -73,6 +74,18 @@ public class ClassEditor {
 		intiButtonAction();
 	}
 
+	public ClassEditor(TemplateClass templateClass, Startpage startpage) {
+		System.out.println("template class" + templateClass);
+		templateClass = new TemplateClass();
+		_startpage = startpage;
+		this.templateClass = templateClass;
+		initLayout();
+		intiButtonAction();
+		this.frame.setVisible(true);
+	}
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
