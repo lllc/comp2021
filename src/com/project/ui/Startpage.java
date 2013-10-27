@@ -111,7 +111,7 @@ btnNewClass.addActionListener(new ActionListener() {
 btnCallFunction.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println(" call function");
-//		CallFunction callFunction = new callFunction();
+		CallFunction callFunction = new CallFunction(templateClass, _startpage);
 	}
 });
 }
