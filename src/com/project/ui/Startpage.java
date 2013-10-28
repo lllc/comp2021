@@ -97,35 +97,35 @@ public class Startpage {
 
 	private void intiButtonAction() {
 
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// if (textField_1.getText().isEmpty()) {
-				// lblError.setText("Please enter class name");
-				//
-				// }else{
-				//
-				// lblError.setText("");
-				//
-				// JFileChooser saveFile = new JFileChooser();
-				// saveFile.setSelectedFile(new File(textField_1.getText() +
-				// ".java"));
-				// saveFile.showSaveDialog(null);
-				//
-				// FileCreator fileCreator = new FileCreator();
-				//
-				// fileCreator.setFile(saveFile.getSelectedFile());
-				// templateClass.setClassName(textField_1.getText());
-				// templateClass.setPackageName(textField_2.getText());
-				//
-				// String classTemplate =
-				// ClassCreator.createTemplate(templateClass);
-				//
-				// fileCreator.setContent(classTemplate);
-				// fileCreator.write();
-				// }
-
-			}
-		});
+//		btnSave.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				 if (textField_1.getText().isEmpty()) {
+//				 lblError.setText("Please enter class");
+//				
+//				 }else{
+//				
+//				 lblError.setText("");
+//				
+//				 JFileChooser saveFile = new JFileChooser();
+//				 saveFile.setSelectedFile(new File(lblClasses.getText() +
+//				 ".java"));
+//				 saveFile.showSaveDialog(null);
+//				
+//				 FileCreator fileCreator = new FileCreator();
+//				
+//				 fileCreator.setFile(saveFile.getSelectedFile());
+//				 templateClass.setClassName(lblClasses.getText());
+//				
+//				
+//				 String classTemplate =
+//				 ClassCreator.createTemplate(templateClass);
+//				
+//				 fileCreator.setContent(classTemplate);
+//				 fileCreator.write();
+//				 }
+//
+//			}
+//		});
 
 		btnNewClass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -156,7 +156,7 @@ public class Startpage {
 	public void addClassToPanel(JButton jButton){
 		System.out.println("Add class to panel");
 		System.out.println(jButton.getText());
-		jButton.setPreferredSize(new Dimension(150, 40));
+		jButton.setPreferredSize(new Dimension(100,100 ));
 		panel_2.add(jButton);
 
 		String temp = lblClasses.getText();

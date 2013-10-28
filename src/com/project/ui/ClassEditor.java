@@ -57,6 +57,7 @@ public class ClassEditor {
 	private JButton btnPreview;
 	private JButton btnCreate;
 	private JTextField textFieldSuperclass;
+	private JButton btnAddFunction;
 	/**
 	 * Launch the application.
 	 */
@@ -184,6 +185,14 @@ public class ClassEditor {
 			}
 		});
 		
+		btnAddFunction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("add function");
+				FunctionEditor functionEditor = new FunctionEditor(templateClass, _classEditor);
+				
+			}
+		});
+		
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				refreshAttributes();
@@ -297,6 +306,10 @@ public class ClassEditor {
 		chckbxMethodMain = new JCheckBox("public static void main(String[] args)");
 		chckbxMethodMain.setBounds(29, 203, 280, 23);
 		inputTextPanel.add(chckbxMethodMain);
+		
+		btnAddFunction = new JButton("Add Function");
+		btnAddFunction.setBounds(0, 376, 117, 29);
+		inputTextPanel.add(btnAddFunction);
 
 		previewPanel = new Panel();
 		previewPanel.setPreferredSize(new Dimension(100, 100));
