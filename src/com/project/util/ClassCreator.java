@@ -3,7 +3,7 @@ package com.project.util;
 import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
 
-public class ClassCreator {
+public class ClassCreator{
 
 	public static String createTemplate(TemplateClass templateClass) {
 		String temp = "";
@@ -11,11 +11,44 @@ public class ClassCreator {
 			temp += "package " + templateClass.getPackageName() + ";\n";
 		}
 		if (!templateClass.getClassName().isEmpty()) {
-			temp += "public class " + templateClass.getClassName() + " { ";
+			if (templateClass.getModifierForPublic() != null){
+				if (templateClass.getModifierForPublic() == TemplateClass.ModifierForPublic.PUBLIC ){
+					temp += "public ";
+				}else if (templateClass.getModifierForPublic() == TemplateClass.ModifierForPublic.PRIVATE ){
+					temp += "private ";
+				}else if (templateClass.getModifierForPublic() == TemplateClass.ModifierForPublic.PROTECTED){
+					temp += "protected ";
+				}
+				
+			}
+			
+			if (templateClass.getModifierForAbstract() != null){
+				if (templateClass.getModifierForAbstract() == TemplateClass.ModifierForAbstract.ABSTRACT ){
+					temp += "abstract ";
+				}else if (templateClass.getModifierForAbstract() == TemplateClass.ModifierForAbstract.FINAL ){
+					temp += "final ";
+				}else if (templateClass.getModifierForAbstract() == TemplateClass.ModifierForAbstract.STATIC){
+					temp += "static ";
+				}
+
+			}
+
+					
+			temp +=	" class " + templateClass.getClassName() + " ";
+			if (!templateClass.getSuperclass().isEmpty()){
+				temp += "extends " + templateClass.getSuperclass() + " ";
+			}
+			temp += " { ";
 			temp += "\n";
 			temp += "\n";
 			for(TemplateAttribute templateAttribute : templateClass.getAttributes()){
 				temp += "\tprivate " + templateAttribute.getType() + " "	+ templateAttribute.getName() + ";\n";
+			}
+			if (templateClass.getCreateMain()){
+				temp += "\tpublic static void main(String[] args){";
+				temp += "\n";
+				temp += "\t}";
+				temp += "\n";
 			}
 			temp += "}";
 		}
