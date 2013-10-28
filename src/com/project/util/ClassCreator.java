@@ -2,6 +2,8 @@ package com.project.util;
 
 import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
+import com.project.model.TemplateFunction;
+
 
 public class ClassCreator{
 
@@ -50,6 +52,18 @@ public class ClassCreator{
 				temp += "\t}";
 				temp += "\n";
 			}
+			
+			
+			for(TemplateFunction templateFunction : templateClass.getFunction()){
+				temp += "\n";
+				if (templateFunction.getModifierForPublic() == TemplateFunction.ModifierForPublic.PUBLIC){
+					temp += "\tpublic ";
+				}else if(templateFunction.getModifierForPublic() == TemplateFunction.ModifierForPublic.PRIVATE){
+					temp += "\tprivate ";
+				}
+				temp +=  "void " + templateFunction.getName() + "(){" + "\n" +"\t}";
+			}
+			
 			temp += "}";
 		}
 		return temp;

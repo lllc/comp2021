@@ -10,10 +10,13 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 
 import com.project.model.TemplateClass;
+import com.project.model.TemplateFunction;
 import com.project.util.ClassCreator;
 import com.project.util.FileCreator;
 import javax.swing.JPanel;
@@ -36,7 +39,9 @@ public class Startpage {
 	private Startpage _startpage;
 	private JLabel lblClasses;
 	private Label label;
-
+	private List<TemplateFunction> functions = new ArrayList<TemplateFunction>();
+	private List<TemplateClass> classes = new ArrayList<TemplateClass>();
+	
 	public static void main(String[] args) {
 		try {
 			Startpage startpage = new Startpage();
@@ -140,7 +145,7 @@ public class Startpage {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(" call function");
 				CallFunction callFunction = new CallFunction(templateClass,
-						_startpage);
+						_startpage,classes);
 			}
 		});
 	}
@@ -153,7 +158,7 @@ public class Startpage {
 		this.panel_2 = panel_2;
 	}
 	
-	public void addClassToPanel(JButton jButton){
+	public void addClassToPanel(JButton jButton, TemplateClass templateClass){
 		System.out.println("Add class to panel");
 		System.out.println(jButton.getText());
 		jButton.setPreferredSize(new Dimension(100,100 ));
@@ -162,7 +167,7 @@ public class Startpage {
 		String temp = lblClasses.getText();
 		lblClasses.setText(lblClasses.getText() + ": " + jButton.getText());
 		lblClasses.setText(temp);
-		
+		classes.add(templateClass);
 	}
 	
 }

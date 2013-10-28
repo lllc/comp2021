@@ -46,6 +46,8 @@ public class TemplateClass implements Serializable {
 	private String superclass;
 	
 	private List<TemplateAttribute> attributes = new ArrayList<TemplateAttribute>();
+	
+	private List<TemplateFunction> functions = new ArrayList<TemplateFunction>();
 
 	public String getClassName() {
 		return className;
@@ -101,6 +103,14 @@ public class TemplateClass implements Serializable {
 
 	public void setAttributes(List<TemplateAttribute> attributes) {
 		this.attributes = attributes;
+	}
+	
+	public List<TemplateFunction> getFunction() {
+		return functions;
+	}
+
+	public void setFunction(List<TemplateFunction> functions) {
+		this.functions = functions;
 	}
 	
 	

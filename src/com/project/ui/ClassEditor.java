@@ -170,7 +170,7 @@ public class ClassEditor {
 					newClass.setText(templateClass.getClassName());
 					System.out.println("new class: " + templateClass.getClassName());
 					if (_startpage != null){
-						_startpage.addClassToPanel(newClass);
+						_startpage.addClassToPanel(newClass, templateClass);
 					}
 					
 				}
@@ -209,6 +209,8 @@ public class ClassEditor {
 		}
 		lblAttributes.setText(attributeNames);
 	}
+	
+	
 	
 	private void initLayout() {
 		frame = new JFrame();

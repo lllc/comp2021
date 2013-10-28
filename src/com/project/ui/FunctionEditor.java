@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
+import com.project.model.TemplateFunction;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -23,10 +24,12 @@ public class FunctionEditor{
 
 	private TemplateClass templateClass;
 	private JFrame frame;
-	private TemplateAttribute templateAttribute;
 	private JTextField textFieldName;
 	private JButton btnAdd;
 	private ClassEditor _classEditor;
+	private TemplateFunction templateFunction;
+	private JCheckBox chckbxStatus;
+	private JCheckBox chckbxPrivate;
 	
 	public TemplateClass getTemplateClass() {
 		return templateClass;
@@ -47,14 +50,14 @@ public class FunctionEditor{
 	}
 
 	public FunctionEditor() {
-		templateAttribute = new TemplateAttribute();
+		templateFunction = new TemplateFunction();
 		initLayout();
 		initButtonAction();
 	}
 	
 	public FunctionEditor(TemplateClass templateClass, ClassEditor classEditor) {
 		System.out.println("template class" + templateClass);
-		templateAttribute = new TemplateAttribute();
+		templateFunction = new TemplateFunction();
 		_classEditor = classEditor;
 		this.templateClass = templateClass;
 		initLayout();
@@ -68,23 +71,28 @@ public class FunctionEditor{
 				if(textFieldName.getText().isEmpty() ){
 					// output error message
 				}else{
-					templateAttribute.setName(textFieldName.getText());
-					
+					templateFunction.setName(textFieldName.getText());
+					if (chckbxStatus.isSelected()){
+						templateFunction.setModifierForPublic(TemplateFunction.ModifierForPublic.PUBLIC);
+					}else if (chckbxPrivate.isSelected()){
+						templateFunction.setModifierForPublic(TemplateFunction.ModifierForPublic.PRIVATE);
+					}else{
+						templateFunction.setModifierForPublic(null);
+					}
 					
 					}
 					if (templateClass != null){
-						List<TemplateAttribute> attributes = templateClass.getAttributes();
-						if (attributes == null){
-							attributes = new ArrayList<TemplateAttribute>();
+						List<TemplateFunction> functions = templateClass.getFunction();
+						if (functions == null){
+							functions = new ArrayList<TemplateFunction>();
 						}
-						attributes.add(templateAttribute);
-						templateClass.setAttributes(attributes);	
+						functions.add(templateFunction);
+						templateClass.setFunction(functions);	
 					}
 					
 					System.out.println("before dispose");
 					frame.dispose();
 					System.out.println("after dispose");
-					_classEditor.refreshAttributes();
 					
 				}
 	
@@ -103,11 +111,11 @@ public class FunctionEditor{
 		lblTitle.setBounds(121, 26, 109, 14);
 		frame.getContentPane().add(lblTitle);
 		
-		JCheckBox chckbxStatus = new JCheckBox("public");
+		chckbxStatus = new JCheckBox("public");
 		chckbxStatus.setBounds(38, 91, 74, 23);
 		frame.getContentPane().add(chckbxStatus);
 		
-		JCheckBox chckbxPrivate = new JCheckBox("private");
+		chckbxPrivate = new JCheckBox("private");
 		chckbxPrivate.setBounds(152, 91, 78, 23);
 		frame.getContentPane().add(chckbxPrivate);
 		
