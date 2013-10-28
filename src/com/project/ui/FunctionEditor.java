@@ -25,8 +25,6 @@ public class FunctionEditor{
 	private JFrame frame;
 	private TemplateAttribute templateAttribute;
 	private JTextField textFieldName;
-	private JTextField textFieldType;
-	private JTextField textFieldLength;
 	private JButton btnAdd;
 	private ClassEditor _classEditor;
 	
@@ -67,13 +65,12 @@ public class FunctionEditor{
 	private void initButtonAction(){
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textFieldName.getText().isEmpty() && textFieldType.getText().isEmpty()){
+				if(textFieldName.getText().isEmpty() ){
 					// output error message
 				}else{
 					templateAttribute.setName(textFieldName.getText());
-					templateAttribute.setType(textFieldType.getText());
-					if (!textFieldLength.getText().isEmpty()){
-						templateAttribute.setLength(Integer.getInteger(textFieldLength.getText()));
+					
+					
 					}
 					if (templateClass != null){
 						List<TemplateAttribute> attributes = templateClass.getAttributes();
@@ -90,9 +87,8 @@ public class FunctionEditor{
 					_classEditor.refreshAttributes();
 					
 				}
-			}
+	
 		});
-		
 		
 	}
 	
@@ -102,49 +98,35 @@ public class FunctionEditor{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblTitle = new JLabel("Funtion Editor");
+		JLabel lblTitle = new JLabel("Function Editor");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(121, 26, 109, 14);
 		frame.getContentPane().add(lblTitle);
 		
 		JCheckBox chckbxStatus = new JCheckBox("public");
-		chckbxStatus.setBounds(38, 59, 74, 23);
+		chckbxStatus.setBounds(38, 91, 74, 23);
 		frame.getContentPane().add(chckbxStatus);
 		
 		JCheckBox chckbxPrivate = new JCheckBox("private");
-		chckbxPrivate.setBounds(152, 59, 78, 23);
+		chckbxPrivate.setBounds(152, 91, 78, 23);
 		frame.getContentPane().add(chckbxPrivate);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(37, 108, 46, 14);
+		lblName.setBounds(37, 128, 46, 14);
 		frame.getContentPane().add(lblName);
 		
 		textFieldName = new JTextField();
-		textFieldName.setBounds(118, 108, 221, 20);
+		textFieldName.setBounds(118, 128, 221, 20);
 		frame.getContentPane().add(textFieldName);
 		textFieldName.setColumns(10);
-		
-		JLabel lblType = new JLabel("Type");
-		lblType.setBounds(38, 148, 46, 14);
-		frame.getContentPane().add(lblType);
-		
-		textFieldType = new JTextField();
-		textFieldType.setColumns(10);
-		textFieldType.setBounds(119, 148, 221, 20);
-		frame.getContentPane().add(textFieldType);
-		
-		JLabel lblLength = new JLabel("Length");
-		lblLength.setBounds(38, 199, 46, 14);
-		frame.getContentPane().add(lblLength);
-		
-		textFieldLength = new JTextField();
-		textFieldLength.setColumns(10);
-		textFieldLength.setBounds(119, 199, 221, 20);
-		frame.getContentPane().add(textFieldLength);
 		
 		btnAdd = new JButton("Add");
 		btnAdd.setBounds(126, 264, 89, 23);
 		frame.getContentPane().add(btnAdd);
+		
+		JLabel lblOnlyForVoid = new JLabel("Only for void function");
+		lblOnlyForVoid.setBounds(37, 63, 214, 16);
+		frame.getContentPane().add(lblOnlyForVoid);
 	}
 
 }
