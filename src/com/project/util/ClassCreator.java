@@ -1,7 +1,5 @@
 package com.project.util;
 
-import com.project.layout.Form;
-import com.project.layout.Window;
 import com.project.model.TemplateAttribute;
 import com.project.model.TemplateClass;
 
